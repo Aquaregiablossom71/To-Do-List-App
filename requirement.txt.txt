@@ -1,0 +1,14 @@
+streamlit==1.39.0
+pandas==2.2.3
+numpy==1.26.4
+scikit-learn==1.5.2
+matplotlib==3.9.2
+seaborn==0.13.2
+IPython==8.27.0
+Pillow==10.4.0
+requests==2.32.3
+
+
+
+paste the following command in cmd:
+pip install -r requirement.txt

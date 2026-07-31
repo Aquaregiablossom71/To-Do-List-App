@@ -1,0 +1,49 @@
+gender,height_cm,weight_kg,skin_tone,event_type,dress_code,time_of_day,style_preference,outfit_suggestion,outfit_image
+Male,175,70,fair,meeting,formal,day,Western,Navy two-piece suit with white shirt,https://imagescdn.peterengland.com/img/app/product/6/635587-18989962.jpg
+Male,180,82,medium,meeting,formal,evening,Western,Charcoal suit with silk tie,https://cdn.shopify.com/s/files/1/0598/1070/9672/files/vjvnow-3_f17dd13f-354a-4b2f-a916-f6f4e8575359_480x480.png?v=1718349170
+Male,170,68,dark,presentation,semi-formal,day,Western,Light blue shirt with tailored chinos,https://i.pinimg.com/736x/d2/a8/17/d2a81746d69c0fa7e16dcc2f5d2dfb00.jpg
+Male,178,78,medium,casual,casual,day,Western,Denim jacket with white tee & chinos,https://i.pinimg.com/736x/5b/65/f4/5b65f46558327919ecac9bc3affb22f6.jpg
+Male,182,88,dark,party,semi-casual,night,Western,Black leather jacket with dark jeans,https://i.pinimg.com/1200x/80/7f/47/807f4772476c93605627b9bd51bfde4d.jpg
+Male,172,68,fair,birthday,casual,evening,Western,Patterned shirt with slim jeans,https://i.pinimg.com/1200x/92/48/c7/9248c7efd4c3a0e0cb354b2eef34671a.jpg
+Male,175,75,fair,wedding,formal,evening,Indian,Beige sherwani with heavy embroidery,https://i.pinimg.com/736x/75/03/63/750363d734d476db17db23abbd05feb6.jpg
+Male,180,82,medium,festival,semi-formal,day,Indian,Embroidered kurta with Nehru jacket,https://i.pinimg.com/736x/e8/31/eb/e831eb7c1450da307370d0c99a0d4485.jpg
+Male,168,70,dark,date,semi-casual,evening,Indian,Stylish bandhgala with churidar,https://i.pinimg.com/736x/bf/4c/fa/bf4cfaad8450f973f8cbafbc28efaf49.jpg
+Male,170,65,medium,casual,casual,day,Japanese,Minimal layered looks: oversized jacket & tapered trousers,https://i.pinimg.com/736x/aa/62/5d/aa625d9638eecffc482c92cd183a4aac.jpg
+Male,176,80,fair,party,semi-casual,night,Global,Street-style bomber with sneakers,https://i.pinimg.com/736x/c6/8b/cf/c68bcfd2c818cffc046e4ec89e2126b2.jpg
+Female,165,58,fair,meeting,formal,day,Western,Grey blazer with pencil skirt & pastel blouse,https://i.pinimg.com/736x/bd/5e/f4/bd5ef4365fd16e271c2f5bbb47bdd393.jpg
+Female,170,62,medium,presentation,semi-formal,day,Western,White blouse with navy midi skirt,https://i.pinimg.com/736x/d0/3e/b6/d03eb61845a59dcb625d313545c15a9e.jpg
+Female,160,54,dark,presentation,semi-formal,evening,Western,Bright coral sheath dress with scarf,https://i.pinimg.com/736x/5e/6f/7d/5e6f7dbdca290718d1638df3f10aefdc.jpg
+Female,160,55,fair,party,semi-formal,night,Western,Red cocktail dress with heels,https://i.pinimg.com/736x/c7/31/9e/c7319e65059dc8215bb8edfc12f52b19.jpg
+Female,168,60,medium,date,semi-casual,evening,Western,Floral wrap dress with ankle boots,https://i.pinimg.com/1200x/1a/2b/fe/1a2bfe5febce30ce7a14790198c2c27b.jpg
+Female,158,53,dark,birthday,casual,day,Western,Jumpsuit with statement necklace,https://i.pinimg.com/736x/47/8e/0e/478e0e90151a459456e97ba7f4d440d3.jpg
+Female,160,58,fair,wedding,formal,evening,Indian,Red lehenga with gold embroidery & dupatta,https://i.pinimg.com/736x/6f/71/a4/6f71a4771d8b28e1b13e539f5ec2b6c7.jpg
+Female,168,60,medium,festival,semi-formal,day,Indian,Pastel saree with light jewellery,https://i.pinimg.com/736x/82/7f/6d/827f6d1a1e243ce29c8f694809ea374b.jpg
+Female,158,52,dark,party,semi-casual,evening,Indian,Embellished Anarkali with juttis,https://i.pinimg.com/736x/4e/4e/63/4e4e63598bab3247a66cecc563516061.jpg
+Female,165,55,fair,casual,casual,day,Japanese,Oversized sweater with pleated skirt (K-fashion),https://i.pinimg.com/736x/8a/36/39/8a3639fa6187c25f5e62624c5321f594.jpg
+Female,162,57,medium,party,semi-formal,night,Global,Sequin mini dress with heels,https://i.pinimg.com/736x/58/20/77/582077d89642ba9c6cbbde84a8c8db3f.jpg
+Female,168,59,fair,meeting,formal,day,Global,"Trench coat, blouse, and slim trousers (Parisian)",https://i.pinimg.com/736x/f2/ad/4f/f2ad4fe5fd8d582a3d90eed1c9a16d7e.jpg
+Male,174,72,medium,meeting,semi-formal,day,Western,Blazer with chinos & loafers,https://i.pinimg.com/1200x/36/27/e6/3627e6a2edcfb1b4a365276eeb4c33ed.jpg
+Male,176,74,fair,date,semi-formal,evening,Western,Smart-casual blazer with denim,https://i.pinimg.com/1200x/7f/5b/f1/7f5bf149a8e89e8450e3df86c54068b6.jpg
+Male,169,66,dark,birthday,semi-casual,day,Global,Printed shirt with dark jeans,https://i.pinimg.com/736x/b9/35/e3/b935e3b2682afb3c6e90bbab1f477dbb.jpg
+Female,161,53,medium,casual,semi-casual,day,Western,Chambray shirt with soft trousers,https://i.pinimg.com/1200x/26/bb/0a/26bb0aa7ef3829f5668b6ff1ed20b72c.jpg
+Female,163,56,fair,date,semi-formal,night,Western,Silk blouse with skinny jeans,https://i.pinimg.com/736x/1d/d3/60/1dd3600907ab1a7438a7a65c006831da.jpg
+Male,182,85,fair,wedding,formal,day,Indian,Pastel sherwani with embroidered stole,https://i.pinimg.com/1200x/b1/6a/0c/b16a0ccddbcabc677a7eb5c6e01c148f.jpg
+Female,166,60,medium,wedding,formal,day,Indian,Pastel lehenga with delicate embroidery,https://i.pinimg.com/736x/1d/e5/67/1de567a67c79250e3ed3e975269b8af4.jpg
+Male,173,71,fair,meeting,formal,day,Japanese,Minimal tailored blazer with shirt,https://i.pinimg.com/736x/68/a3/23/68a323d54efdfc5b9698ff1fc333ad5e.jpg
+Female,160,52,fair,meeting,formal,day,Japanese,Structured blouse with A-line skirt,https://i.pinimg.com/736x/1b/db/ef/1bdbef2235b1ecbce6f7d3e317c4da39.jpg
+Male,185,90,dark,party,semi-casual,night,Western,Velvet blazer with dark trousers,https://i.pinimg.com/736x/ca/74/6a/ca746a86a6f54da2256b181332c01b41.jpg
+Female,170,63,medium,party,semi-formal,evening,Western,Satin midi dress with clutch,https://i.pinimg.com/736x/50/54/ee/5054ee6abfea52f044a2da28dc23e621.jpg
+Male,168,65,fair,casual,casual,morning,Global,Light hoodie with joggers,https://i.pinimg.com/1200x/e3/fc/1c/e3fc1c5c9585df292feb16aa081192ae.jpg
+Female,158,50,dark,casual,casual,morning,Global,Breathable tee with culottes,https://i.pinimg.com/736x/fb/34/3e/fb343e42261cb43c8229f3653d0261f9.jpg
+Female,164,57,medium,date,semi-casual,day,Indian,Chic kurta with palazzo (fusion),https://i.pinimg.com/736x/13/48/18/134818d9576ddfe02514e9bd72e93244.jpg
+Male,177,76,medium,date,semi-casual,day,Indian,Smart kurta with jeans (fusion),https://i.pinimg.com/736x/0e/28/61/0e2861ddde276e6b5514356b39fd6d30.jpg
+Female,167,60,fair,birthday,semi-formal,evening,Global,Ruffled dress with statement earring,https://i.pinimg.com/736x/0e/5f/87/0e5f8714cb4e60a2c5b13dd6bf941391.jpg
+Male,180,80,medium,birthday,semi-formal,evening,Western,Smart shirt with blazer,https://i.pinimg.com/736x/3d/1e/38/3d1e381175d270b969a9cd62e3baadeb.jpg
+Female,162,58,dark,wedding,formal,night,Indian,Deep maroon saree with heavy jewelry,https://i.pinimg.com/1200x/4a/67/9c/4a679c71b59a4c7488539e9fa547c960.jpg
+Male,183,85,dark,wedding,formal,night,Western,Black tuxedo with bow tie,https://i.pinimg.com/736x/d4/56/79/d45679b67ab585583754b90ebe43c48f.jpg
+Female,159,51,fair,party,semi-casual,evening,Japanese,Cute dress with platform shoes,https://i.pinimg.com/736x/8f/f5/89/8ff58907a642005748f0a779127f22e0.jpg
+Male,174,73,medium,festival,casual,day,Global,Colorful kurta-style shirt with jeans,https://i.pinimg.com/736x/d3/0f/72/d30f72be68ea9444289e48ac461df981.jpg
+Female,169,61,medium,presentation,formal,day,Western,Tailored blazer dress,https://i.pinimg.com/736x/00/48/f3/0048f383d4356aa957ba122c24e5d70a.jpg
+Male,171,69,dark,presentation,semi-formal,day,Global,Button-up with smart trousers,https://i.pinimg.com/736x/45/45/80/454580bb6db1cd0b714beb3c8de4a3c0.jpg
+Female,161,54,fair,casual,semi-casual,evening,Western,Cardigan with slip dress,https://i.pinimg.com/736x/52/20/62/522062fd614434e8bec2de8ebd493a5b.jpg
+Male,179,77,medium,party,semi-casual,night,Japanese,Layered outerwear with loafers,https://i.pinimg.com/736x/f4/e7/a3/f4e7a3ee12b77e7a994385e5c75bf2b4.jpgR

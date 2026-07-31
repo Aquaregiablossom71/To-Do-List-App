@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AI Stylist — Enterprise Dashboard</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<!-- Top Header -->
+<header class="top-header d-flex align-items-center justify-content-between px-4">
+  <div class="d-flex align-items-center gap-3">
+    <i class="bi bi-stars-fill fs-4 brand-icon"></i>
+    <div>
+      <div class="fw-bold">AI Stylist</div>
+      <small class="text-muted">Personalized outfit recommender</small>
+    </div>
+  </div>
+
+  <div class="d-flex align-items-center gap-3">
+    <button id="themeToggle" class="btn btn-sm btn-outline-secondary" title="Toggle theme">
+      <i id="themeIcon" class="bi bi-moon"></i>
+    </button>
+    <i class="bi bi-bell fs-5 text-muted"></i>
+    <div class="user-badge">LP</div>
+  </div>
+</header>
+
+<!-- Layout -->
+<div class="layout">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+      <ul class="nav flex-column">
+        <li class="nav-item"><a class="nav-link" href="#/dashboard" data-route="dashboard"><i class="bi bi-speedometer2 me-2"></i> Dashboard</a></li>
+        <li class="nav-item"><a class="nav-link" href="#/recommend" data-route="recommend"><i class="bi bi-magic me-2"></i> Recommend</a></li>
+        <li class="nav-item"><a class="nav-link" href="#/services" data-route="services"><i class="bi bi-list-columns-reverse me-2"></i> Services Table</a></li>
+        <li class="nav-item"><a class="nav-link" href="#/history" data-route="history"><i class="bi bi-clock-history me-2"></i> History</a></li>
+        <li class="nav-item"><a class="nav-link" href="#/about" data-route="about"><i class="bi bi-person-circle me-2"></i> About You</a></li>
+        <li class="nav-item"><a class="nav-link" href="#/profile" data-route="profile"><i class="bi bi-person-lines-fill me-2"></i> Profile</a></li>
+        <li class="nav-item"><a class="nav-link" href="#/settings" data-route="settings"><i class="bi bi-gear me-2"></i> Settings</a></li>
+      </ul>
+    </div>
+  </aside>
+
+  <!-- Main content -->
+  <main class="content">
+
+    <!-- Dashboard panel -->
+    <section id="panel-dashboard" class="panel">
+      <div class="page-header d-flex justify-content-between align-items-center mb-3">
+        <div>
+          <h4 class="mb-0">Overview</h4>
+          <small class="text-muted">Quick summary & actions</small>
+        </div>
+        <div>
+          <a href="#/recommend" class="btn btn-primary">New Recommendation</a>
+        </div>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-md-8">
+          <div class="card enterprise-card p-3">
+            <h6 class="mb-2">Recent Recommendations</h6>
+            <p class="small text-muted mb-0">A list of recently generated outfits (demo data)</p>
+            <div class="table-responsive mt-3">
+              <table class="table table-borderless align-middle">
+                <thead>
+                  <tr>
+                    <th>When</th>
+                    <th>Type</th>
+                    <th>Style</th>
+                    <th>Dress Code</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Today • 09:12</td>
+                    <td>Meeting</td>
+                    <td>Western</td>
+                    <td>Formal</td>
+                    <td><a href="#/result" class="link-primary">View</a></td>
+                  </tr>
+                  <tr>
+                    <td>Yesterday • 18:02</td>
+                    <td>Party</td>
+                    <td>Global</td>
+                    <td>Semi-formal</td>
+                    <td><a href="#/result" class="link-primary">View</a></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card enterprise-card p-3">
+            <h6 class="mb-2">Actions</h6>
+            <div class="d-grid gap-2">
+              <a href="#/services" class="btn btn-outline-primary">Open Services Table</a>
+              <a href="#/settings" class="btn btn-outline-secondary">Preferences</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Recommend panel (form) -->
+    <section id="panel-recommend" class="panel d-none">
+      <div class="page-header d-flex justify-content-between align-items-center mb-3">
+        <div>
+          <h4 class="mb-0">Generate Recommendation</h4>
+          <small class="text-muted">Fill inputs and get personalized suggestions</small>
+        </div>
+        <div>
+          <a href="#/services" class="btn btn-outline-secondary">Services Table</a>
+        </div>
+      </div>
+
+      <div class="card enterprise-card p-4">
+        <form action="/recommend" method="POST" id="recommendForm">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label">Gender</label>
+              <select class="form-select" name="gender" id="rec_gender">
+                <option>Male</option>
+                <option>Female</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Height (cm)</label>
+              <input type="number" name="height" id="rec_height" class="form-control">
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Weight (kg)</label>
+              <input type="number" name="weight" id="rec_weight" class="form-control">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Skin Tone</label>
+              <select class="form-select" name="skin_tone" id="rec_skin">
+                <option>fair</option>
+                <option>medium</option>
+                <option>dark</option>
+              </select>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Event Type</label>
+              <select class="form-select" name="event_type" id="rec_event">
+                <option>meeting</option>
+                <option>presentation</option>
+                <option>party</option>
+                <option>wedding</option>
+              </select>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Dress Code</label>
+              <select class="form-select" name="dress_code" id="rec_dress">
+                <option>formal</option>
+                <option>semi-formal</option>
+                <option>casual</option>
+              </select>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Time of Day</label>
+              <select class="form-select" name="time_of_day" id="rec_time">
+                <option>morning</option>
+                <option>day</option>
+                <option>evening</option>
+                <option>night</option>
+              </select>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Style Preference</label>
+              <select class="form-select" name="style_preference" id="rec_style">
+                <option>Indian</option>
+                <option>Western</option>
+                <option>Global</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="text-end mt-4">
+            <button type="submit" class="btn btn-primary">Get Recommendation</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- Services panel (table with collapsible rows) -->
+    <section id="panel-services" class="panel d-none">
+      <div class="page-header d-flex justify-content-between align-items-center mb-3">
+        <div>
+          <h4 class="mb-0">Services Table</h4>
+          <small class="text-muted">Editable rows — expand to edit service details</small>
+        </div>
+        <div class="d-flex gap-2">
+          <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-search"></i></span>
+            <input id="servicesSearch" type="text" class="form-control" placeholder="Search services">
+          </div>
+          <button id="addRecordBtn" class="btn btn-outline-primary">Add Record</button>
+        </div>
+      </div>
+
+      <div class="card enterprise-card p-3">
+        <div class="table-responsive">
+          <table id="servicesTable" class="table align-middle">
+            <thead>
+              <tr>
+                <th style="width:48px"></th>
+                <th>Aircraft name</th>
+                <th>Service name</th>
+                <th>Rate group</th>
+                <th>Rate type</th>
+                <th>Charges</th>
+                <th style="width:120px">Action</th>
+              </tr>
+            </thead>
+            <tbody id="servicesTbody">
+              <!-- Example row -->
+              <tr>
+                <td>
+                  <button class="btn btn-sm btn-light" data-bs-toggle="collapse" data-bs-target="#row1-details" aria-expanded="false" aria-controls="row1-details">
+                    <i class="bi bi-chevron-down"></i>
+                  </button>
+                </td>
+                <td>Aircraft A320</td>
+                <td>BS - Baggage service</td>
+                <td>Value</td>
+                <td>Fixed</td>
+                <td>150</td>
+                <td>
+                  <button class="btn btn-sm btn-outline-secondary me-1" data-bs-toggle="collapse" data-bs-target="#row1-details"><i class="bi bi-pencil"></i></button>
+                  <button class="btn btn-sm btn-outline-danger" onclick="this.closest('tr').remove();"><i class="bi bi-trash"></i></button>
+                </td>
+              </tr>
+              <tr class="collapse-row">
+                <td colspan="7" class="p-0">
+                  <div class="collapse" id="row1-details">
+                    <div class="p-3 border-top">
+                      <form class="service-detail-form row g-3">
+                        <div class="col-md-4">
+                          <label class="form-label">Service Name</label>
+                          <input class="form-control" value="BS - Baggage service">
+                        </div>
+                        <div class="col-md-4">
+                          <label class="form-label">Service Rate Group</label>
+                          <input class="form-control" value="Value">
+                        </div>
+                        <div class="col-md-4">
+                          <label class="form-label">UMO</label>
+                          <select class="form-select">
+                            <option>UMO</option>
+                          </select>
+                        </div>
+
+                        <div class="col-md-4">
+                          <label class="form-label">Rate type</label>
+                          <select class="form-select">
+                            <option>Fixed</option>
+                            <option>Percentage</option>
+                          </select>
+                        </div>
+
+                        <div class="col-md-4">
+                          <label class="form-label">Charges</label>
+                          <input class="form-control" value="150">
+                        </div>
+
+                        <div class="col-md-4 d-flex align-items-end justify-content-end">
+                          <div class="btn-group">
+                            <button class="btn btn-sm btn-outline-secondary">Copy From</button>
+                            <button class="btn btn-sm btn-primary">Save</button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- second example row -->
+              <tr>
+                <td>
+                  <button class="btn btn-sm btn-light" data-bs-toggle="collapse" data-bs-target="#row2-details" aria-expanded="false" aria-controls="row2-details">
+                    <i class="bi bi-chevron-down"></i>
+                  </button>
+                </td>
+                <td>Aircraft B737</td>
+                <td>GS - Ground service</td>
+                <td>Standard</td>
+                <td>Value</td>
+                <td>120</td>
+                <td>
+                  <button class="btn btn-sm btn-outline-secondary me-1" data-bs-toggle="collapse" data-bs-target="#row2-details"><i class="bi bi-pencil"></i></button>
+                  <button class="btn btn-sm btn-outline-danger" onclick="this.closest('tr').remove();"><i class="bi bi-trash"></i></button>
+                </td>
+              </tr>
+              <tr class="collapse-row">
+                <td colspan="7" class="p-0">
+                  <div class="collapse" id="row2-details">
+                    <div class="p-3 border-top">
+                      <form class="service-detail-form row g-3">
+                        <div class="col-md-4">
+                          <label class="form-label">Service Name</label>
+                          <input class="form-control" value="GS - Ground service">
+                        </div>
+                        <div class="col-md-4">
+                          <label class="form-label">Service Rate Group</label>
+                          <input class="form-control" value="Standard">
+                        </div>
+                        <div class="col-md-4">
+                          <label class="form-label">UMO</label>
+                          <select class="form-select">
+                            <option>UMO</option>
+                          </select>
+                        </div>
+
+                        <div class="col-md-4">
+                          <label class="form-label">Rate type</label>
+                          <select class="form-select">
+                            <option>Value</option>
+                            <option>Percentage</option>
+                          </select>
+                        </div>
+
+                        <div class="col-md-4">
+                          <label class="form-label">Charges</label>
+                          <input class="form-control" value="120">
+                        </div>
+
+                        <div class="col-md-4 d-flex align-items-end justify-content-end">
+                          <div class="btn-group">
+                            <button class="btn btn-sm btn-outline-secondary">Copy From</button>
+                            <button class="btn btn-sm btn-primary">Save</button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- History panel -->
+    <section id="panel-history" class="panel d-none">
+      <div class="page-header mb-3">
+        <h4 class="mb-0">History</h4>
+        <small class="text-muted">Previously generated recommendations & actions</small>
+      </div>
+
+      <div class="card enterprise-card p-3">
+        <ul class="list-group">
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            2026-01-07 — Meeting suggestion • <span class="text-muted">View / Re-run</span>
+            <div><a href="#/result" class="btn btn-sm btn-outline-primary">Open</a></div>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            2026-01-06 — Party suggestion • <span class="text-muted">View / Re-run</span>
+            <div><a href="#/result" class="btn btn-sm btn-outline-primary">Open</a></div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- About You panel -->
+    <section id="panel-about" class="panel d-none">
+      <div class="page-header mb-3">
+        <h4 class="mb-0">About You</h4>
+        <small class="text-muted">Enter your basic profile — used to prefill recommendation form</small>
+      </div>
+
+      <div class="card enterprise-card p-3">
+        <form id="aboutForm" class="row g-3">
+          <div class="col-md-4">
+            <label class="form-label">Full name</label>
+            <input id="about_name" class="form-control" placeholder="e.g. Kendrick Lammar">
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Gender</label>
+            <select id="about_gender" class="form-select">
+              <option>Male</option>
+              <option>Female</option>
+            </select>
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Height (cm)</label>
+            <input id="about_height" type="number" class="form-control">
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label">Weight (kg)</label>
+            <input id="about_weight" type="number" class="form-control">
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label">Skin Tone</label>
+            <select id="about_skin" class="form-select">
+              <option>fair</option>
+              <option>medium</option>
+              <option>dark</option>
+            </select>
+          </div>
+
+          <div class="col-md-4 d-flex align-items-end">
+            <div class="btn-group ms-auto">
+              <button id="saveAbout" class="btn btn-primary">Save Profile</button>
+              <button id="clearAbout" class="btn btn-outline-danger" type="button">Clear</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- Profile panel -->
+    <section id="panel-profile" class="panel d-none">
+      <div class="page-header mb-3">
+        <h4 class="mb-0">Profile</h4>
+        <small class="text-muted">Your saved information</small>
+      </div>
+
+      <div class="card enterprise-card p-3">
+        <div id="profileView">
+          <div><strong>Name:</strong> <span id="p_name">—</span></div>
+          <div><strong>Gender:</strong> <span id="p_gender">—</span></div>
+          <div><strong>Height:</strong> <span id="p_height">—</span> cm</div>
+          <div><strong>Weight:</strong> <span id="p_weight">—</span> kg</div>
+          <div><strong>Skin Tone:</strong> <span id="p_skin">—</span></div>
+          <div class="mt-3">
+            <button id="editProfileBtn" class="btn btn-outline-primary">Edit Profile</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Settings panel -->
+    <section id="panel-settings" class="panel d-none">
+      <div class="page-header mb-3">
+        <h4 class="mb-0">Settings</h4>
+        <small class="text-muted">Theme & preferences</small>
+      </div>
+
+      <div class="card enterprise-card p-3">
+        <div class="mb-3">
+          <label class="form-label">Theme</label>
+          <div>
+            <div class="form-check form-switch d-inline-block">
+              <input id="themeSwitch" class="form-check-input" type="checkbox" role="switch">
+              <label class="form-check-label" for="themeSwitch">Dark mode</label>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <label class="form-label">Default style preference</label>
+          <select id="defaultStyle" class="form-select">
+            <option>Indian</option>
+            <option>Western</option>
+            <option>Global</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- Bootstrap + App JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+/* -----------------------
+   Panels (routing)
+   ----------------------- */
+const panels = {
+  dashboard: document.getElementById('panel-dashboard'),
+  recommend: document.getElementById('panel-recommend'),
+  services: document.getElementById('panel-services'),
+  history: document.getElementById('panel-history'),
+  about: document.getElementById('panel-about'),
+  profile: document.getElementById('panel-profile'),
+  settings: document.getElementById('panel-settings')
+};
+
+function showPanel(name) {
+  Object.keys(panels).forEach(k => panels[k].classList.toggle('d-none', k !== name));
+  document.querySelectorAll('.sidebar .nav-link').forEach(a => a.classList.toggle('active', a.dataset.route === name));
+  if (location.hash !== '#/' + name) history.pushState(null, '', '#/' + name);
+  // when showing recommend panel, ensure prefills are applied
+  if (name === 'recommend') populateRecommendForm();
+}
+
+function routeFromHash() {
+  const h = location.hash.replace('#/', '').split('/')[0] || 'dashboard';
+  if (panels[h]) showPanel(h); else showPanel('dashboard');
+}
+
+window.addEventListener('popstate', routeFromHash);
+window.addEventListener('hashchange', routeFromHash);
+routeFromHash();
+
+document.querySelectorAll('.sidebar .nav-link').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    showPanel(a.dataset.route);
+  });
+});
+
+/* -----------------------
+   Services: add row + search
+   ----------------------- */
+document.getElementById('addRecordBtn').addEventListener('click', function (e) {
+  e.preventDefault();
+  const tbody = document.getElementById('servicesTbody');
+  const uid = 'r' + Date.now();
+  const row = document.createElement('tr');
+  row.innerHTML = `
+    <td>
+      <button class="btn btn-sm btn-light" data-bs-toggle="collapse" data-bs-target="#${uid}-details"><i class="bi bi-chevron-down"></i></button>
+    </td>
+    <td><input class="form-control form-control-sm" value="New Aircraft"></td>
+    <td><input class="form-control form-control-sm" value="New Service"></td>
+    <td><input class="form-control form-control-sm" value="Group"></td>
+    <td><select class="form-select form-select-sm"><option>Value</option></select></td>
+    <td><input class="form-control form-control-sm" value="0"></td>
+    <td>
+      <button class="btn btn-sm btn-outline-secondary me-1" data-bs-toggle="collapse" data-bs-target="#${uid}-details"><i class="bi bi-pencil"></i></button>
+      <button class="btn btn-sm btn-outline-danger" onclick="this.closest('tr').nextElementSibling.remove(); this.closest('tr').remove();"><i class="bi bi-trash"></i></button>
+    </td>
+  `;
+  const detailsRow = document.createElement('tr');
+  detailsRow.classList.add('collapse-row');
+  detailsRow.innerHTML = `
+    <td colspan="7" class="p-0">
+      <div class="collapse" id="${uid}-details">
+        <div class="p-3 border-top">
+          <form class="service-detail-form row g-3">
+            <div class="col-md-4">
+              <label class="form-label">Service Name</label>
+              <input class="form-control" value="New Service">
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Service Rate Group</label>
+              <input class="form-control" value="Group">
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">UMO</label>
+              <select class="form-select">
+                <option>UMO</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Rate type</label>
+              <select class="form-select">
+                <option>Value</option>
+                <option>Fixed</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Charges</label>
+              <input class="form-control" value="0">
+            </div>
+            <div class="col-md-4 d-flex align-items-end justify-content-end">
+              <div class="btn-group">
+                <button class="btn btn-sm btn-outline-secondary">Copy From</button>
+                <button class="btn btn-sm btn-primary">Save</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </td>
+  `;
+  tbody.prepend(detailsRow);
+  tbody.prepend(row);
+});
+
+document.getElementById('servicesSearch').addEventListener('input', function () {
+  const q = this.value.trim().toLowerCase();
+  const rows = Array.from(document.querySelectorAll('#servicesTbody > tr'));
+  for (let i = 0; i < rows.length; i += 2) { // summary and details alternate
+    const summary = rows[i];
+    const details = rows[i + 1];
+    const match = !q || summary.innerText.toLowerCase().includes(q);
+    summary.style.display = match ? '' : 'none';
+    if (details) details.style.display = match ? '' : 'none';
+  }
+});
+
+/* -----------------------
+   Theme toggle (persist)
+   ----------------------- */
+const body = document.body;
+const themeToggle = document.getElementById('themeToggle');
+const themeIcon = document.getElementById('themeIcon');
+const themeSwitch = document.getElementById('themeSwitch');
+
+function setTheme(dark) {
+  body.classList.toggle('dark-theme', !!dark);
+  themeIcon.className = dark ? 'bi bi-sun' : 'bi bi-moon';
+  if (themeSwitch) themeSwitch.checked = !!dark;
+  localStorage.setItem('ai_stylist_theme_dark', !!dark ? '1' : '0');
+}
+const saved = localStorage.getItem('ai_stylist_theme_dark');
+setTheme(saved === '1');
+themeToggle.addEventListener('click', () => setTheme(!body.classList.contains('dark-theme')));
+if (themeSwitch) themeSwitch.addEventListener('change', () => setTheme(themeSwitch.checked));
+
+/* -----------------------
+   About/Profile (localStorage)
+   ----------------------- */
+const ABOUT_KEY = 'ai_stylist_profile';
+
+function loadProfile() {
+  try {
+    const raw = localStorage.getItem(ABOUT_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch (e) { return null; }
+}
+
+function saveProfile(profile) {
+  localStorage.setItem(ABOUT_KEY, JSON.stringify(profile));
+  renderProfileView();
+  populateRecommendForm();
+}
+
+function clearProfile() {
+  localStorage.removeItem(ABOUT_KEY);
+  renderProfileView();
+  populateRecommendForm();
+}
+
+function populateRecommendForm() {
+  const p = loadProfile();
+  if (!p) return;
+  // map fields if exist
+  if (p.gender) document.getElementById('rec_gender').value = p.gender;
+  if (p.height) document.getElementById('rec_height').value = p.height;
+  if (p.weight) document.getElementById('rec_weight').value = p.weight;
+  if (p.skin) document.getElementById('rec_skin').value = p.skin;
+  // optionally set style preference
+  if (p.style_preference) {
+    const sel = document.getElementById('rec_style');
+    if (sel) sel.value = p.style_preference;
+  }
+}
+
+function renderProfileView() {
+  const p = loadProfile();
+  document.getElementById('p_name').innerText = p && p.name ? p.name : '—';
+  document.getElementById('p_gender').innerText = p && p.gender ? p.gender : '—';
+  document.getElementById('p_height').innerText = p && p.height ? p.height : '—';
+  document.getElementById('p_weight').innerText = p && p.weight ? p.weight : '—';
+  document.getElementById('p_skin').innerText = p && p.skin ? p.skin : '—';
+  // fill about form fields
+  if (p) {
+    document.getElementById('about_name').value = p.name || '';
+    document.getElementById('about_gender').value = p.gender || 'Male';
+    document.getElementById('about_height').value = p.height || '';
+    document.getElementById('about_weight').value = p.weight || '';
+    document.getElementById('about_skin').value = p.skin || 'fair';
+  } else {
+    document.getElementById('aboutForm').reset();
+  }
+}
+
+// bind about form save/clear
+document.getElementById('saveAbout').addEventListener('click', function (e) {
+  e.preventDefault();
+  const profile = {
+    name: document.getElementById('about_name').value.trim(),
+    gender: document.getElementById('about_gender').value,
+    height: document.getElementById('about_height').value,
+    weight: document.getElementById('about_weight').value,
+    skin: document.getElementById('about_skin').value,
+    style_preference: document.getElementById('defaultStyle') ? document.getElementById('defaultStyle').value : ''
+  };
+  saveProfile(profile);
+  // after save go to profile panel
+  showPanel('profile');
+});
+
+document.getElementById('clearAbout').addEventListener('click', function (e) {
+  e.preventDefault();
+  if (confirm('Clear saved profile?')) {
+    clearProfile();
+  }
+});
+
+document.getElementById('editProfileBtn').addEventListener('click', function () {
+  showPanel('about');
+});
+
+// init profile on load
+renderProfileView();
+populateRecommendForm();
+
+</script>
+</body>
+</html>

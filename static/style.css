@@ -1,0 +1,193 @@
+/* ===========================
+   Enterprise Dashboard Styles
+   Supports light + dark theme toggling
+   =========================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --bg: #eef2f6;
+  --card: #ffffff;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --primary: #1f6fd6;
+  --border: #e3e7ed;
+  --shadow: rgba(15, 23, 42, 0.06);
+}
+
+/* dark theme overrides */
+body.dark-theme {
+  --bg: #07111a;
+  --card: #071827;
+  --text: #e6eef8;
+  --muted: #9aa6b2;
+  --primary: #3da0ff;
+  --border: rgba(255,255,255,0.06);
+  --shadow: rgba(2,6,23,0.6);
+}
+
+/* Global */
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  min-height: 100vh;
+}
+
+/* Top Header */
+.top-header {
+  height: 64px;
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.brand-icon {
+  color: var(--primary);
+}
+
+/* User badge */
+.user-badge {
+  background: var(--primary);
+  color: #fff;
+  font-size: 12px;
+  border-radius: 50%;
+  padding: 6px 9px;
+}
+
+/* Layout */
+.layout {
+  display: flex;
+  min-height: calc(100vh - 64px);
+}
+
+/* Sidebar */
+.sidebar {
+  width: 240px;
+  background: linear-gradient(180deg, rgba(31,111,214,0.06), rgba(31,111,214,0.02));
+  padding: 24px 16px;
+  border-right: 1px solid var(--border);
+}
+
+.sidebar .nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar .nav-item {
+  margin-bottom: 6px;
+}
+
+.sidebar .nav-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--muted);
+  padding: 10px 12px;
+  border-radius: 8px;
+  text-decoration: none;
+}
+
+.sidebar .nav-link i { font-size: 16px; color: var(--primary); }
+
+.sidebar .nav-link:hover,
+.sidebar .nav-link.active {
+  background: rgba(31,111,214,0.06);
+  color: var(--text);
+}
+
+/* Content */
+.content {
+  flex: 1;
+  padding: 28px;
+}
+
+/* Headers */
+.page-header h4 { margin-bottom: 0; color: var(--text); }
+.page-header small { color: var(--muted); }
+
+/* Enterprise card */
+.enterprise-card {
+  background: var(--card);
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  box-shadow: 0 6px 24px var(--shadow);
+}
+
+/* Form elements */
+.form-label { font-weight: 600; color: var(--muted); font-size: 13px; }
+.form-control, .form-select {
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+}
+
+/* Input group */
+.input-group .input-group-text {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--muted);
+}
+
+/* Buttons */
+.btn-primary {
+  background: var(--primary);
+  border: none;
+}
+
+.btn-outline-primary {
+  color: var(--primary);
+  border-color: var(--primary);
+}
+
+/* Table adjustments
+   FIX: in dark theme the table looked like a white inset box.
+   Use transparent backgrounds so the card shows through (card uses var(--card))
+*/
+.table {
+  background: transparent !important;
+}
+.table thead th {
+  background: transparent !important;
+  color: var(--muted);
+  font-weight: 600;
+  border-bottom: 1px solid var(--border);
+}
+.table tbody td {
+  background: transparent !important;
+  border-top: 1px solid rgba(0,0,0,0.02);
+  color: var(--text);
+}
+
+/* In case Bootstrap applies a default white background to .table-responsive */
+.table-responsive {
+  background: transparent !important;
+}
+
+/* Placeholder image */
+.placeholder-image {
+  height: 200px;
+  background: linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0.04));
+  color: rgba(0,0,0,0.35);
+}
+
+/* Collapse row style */
+.collapse-row td { background: transparent; padding: 0; }
+
+/* Small utilities */
+.text-muted { color: var(--muted) !important; }
+.link-primary { color: var(--primary) !important; }
+
+/* Responsive */
+@media (max-width: 991px) {
+  .sidebar { display: none; }
+  .layout { display: block; }
+  .content { padding: 16px; }
+}
